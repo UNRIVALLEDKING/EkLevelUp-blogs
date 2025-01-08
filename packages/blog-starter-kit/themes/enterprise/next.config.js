@@ -77,11 +77,11 @@ const config = {
 		return [
 		  {
 			source: "/blog",
-			destination: "https://eklevelup-web-prod.vercel.app/blog",
+			destination: "https://eklevelup-web-prod.vercel.app/blogs",
 		  },
 		  {
 			source: "/blog/:path*",
-			destination: "https://eklevelup-web-prod.vercel.app/blog/:path*",
+			destination: "https://eklevelup-web-prod.vercel.app/blogs/:path*",
 		  },
 		];
 	  },
