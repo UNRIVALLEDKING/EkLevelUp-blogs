@@ -77,13 +77,11 @@ const config = {
 		return [
 		  {
 			source: "/blog",
-			destination: "eklevelup-web-prod.vercel.app/blog",
-			//  -> Replace https://starter-kit-rose-seven.vercel.app with your own Vercel deployment URL from step 1
+			destination: "https://eklevelup-web-prod.vercel.app/blog",
 		  },
 		  {
 			source: "/blog/:path*",
-			destination: "eklevelup-web-prod.vercel.app/blog/:path*",
-			//  -> Replace https://starter-kit-rose-seven.vercel.app with your own Vercel deployment URL from step 1
+			destination: "https://eklevelup-web-prod.vercel.app/blog/:path*",
 		  },
 		];
 	  },
