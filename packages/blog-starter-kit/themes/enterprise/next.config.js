@@ -75,16 +75,18 @@ const config = {
 	},
 	async rewrites() {
 		return [
-			{
-				source: '/ping/data-event',
-				destination: `${ANALYTICS_BASE_URL}/api/data-event`,
-			},
-			{
-				source: '/api/analytics',
-				destination: `${HASHNODE_ADVANCED_ANALYTICS_URL}/api/analytics`,
-			},
+		  {
+			source: "/blog",
+			destination: "eklevelup-web-prod.vercel.app/blog",
+			//  -> Replace https://starter-kit-rose-seven.vercel.app with your own Vercel deployment URL from step 1
+		  },
+		  {
+			source: "/blog/:path*",
+			destination: "eklevelup-web-prod.vercel.app/blog/:path*",
+			//  -> Replace https://starter-kit-rose-seven.vercel.app with your own Vercel deployment URL from step 1
+		  },
 		];
-	},
+	  },
 	async redirects() {
 		return await getRedirectionRules();
 	},
