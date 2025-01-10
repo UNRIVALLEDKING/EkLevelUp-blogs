@@ -1,11 +1,11 @@
 import * as DialogPrimitive from '@radix-ui/react-dialog';
-import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { PublicationNavbarItem } from '../generated/graphql';
 import { Button } from './button';
 import { useAppContext } from './contexts/appContext';
 import CloseSVG from './icons/svgs/CloseSVG';
 import { PublicationLogo } from './publication-logo';
+import { Search } from './searchbar';
 import { SocialLinks } from './social-links';
 
 type Props = {
@@ -63,39 +63,22 @@ function PublicationSidebar(props: Props) {
 						</div>
 					</div>
 
-					<div className="py-10 pl-8 pr-4">
-						<h2 className="mb-4 text-sm font-semibold uppercase text-slate-500 dark:text-slate-400">
-							Blog menu
-						</h2>
-						<section className="mb-10">
-							<ul className="flex flex-col gap-2 text-slate-700 dark:text-white">
-								<li>
-									<Link
-										href="/"
-										className="transition-200 block truncate text-ellipsis whitespace-nowrap rounded p-2 px-3 transition-colors hover:bg-slate-100 hover:text-black dark:hover:bg-neutral-800 dark:hover:text-white"
-									>
-										Home
-									</Link>
-								</li>
-								{navbarItems.map((item) => (
-									<li key={item.url}>
-										<Link
-											href={item.url}
-											className="transition-200 block truncate text-ellipsis whitespace-nowrap rounded p-2 px-3 transition-colors hover:bg-slate-100 hover:text-black dark:hover:bg-neutral-800 dark:hover:text-white"
-										>
-											{item.label}
-										</Link>
-									</li>
-								))}
-							</ul>
-						</section>
-
-						{hasSocialLinks && (
+					<div className="flex h-full flex-col justify-between pb-5 pl-8 pr-4">
+						<div>
 							<h2 className="mb-4 text-sm font-semibold uppercase leading-6 text-slate-500 dark:text-slate-400">
-								Blog socials
+								Search
 							</h2>
-						)}
-						<SocialLinks isSidebar />
+							<Search />
+						</div>
+
+						<div>
+							{hasSocialLinks && (
+								<h2 className="mb-4 text-sm font-semibold uppercase leading-6 text-slate-500 dark:text-slate-400">
+									Blog socials
+								</h2>
+							)}
+							<SocialLinks isSidebar />
+						</div>
 					</div>
 				</DialogPrimitive.Content>
 			</DialogPrimitive.Portal>
