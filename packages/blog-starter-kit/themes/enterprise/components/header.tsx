@@ -6,7 +6,9 @@ import { Container } from './container';
 import { useAppContext } from './contexts/appContext';
 import HamburgerSVG from './icons/svgs/HamburgerSVG';
 import { PublicationLogo } from './publication-logo';
+import { Search } from './searchbar';
 import PublicationSidebar from './sidebar';
+import { SocialLinks } from './social-links';
 
 function hasUrl(
 	navbarItem: PublicationNavbarItem,
@@ -27,14 +29,14 @@ export const Header = () => {
 	};
 
 	const navList = (
-		<ul className="flex flex-row items-center gap-2 text-white">
+		<ul className="flex flex-row items-center gap-4 text-white">
 			{visibleItems.map((item) => (
 				<li key={item.url}>
 					<a
 						href={item.url}
 						target="_blank"
 						rel="noopener noreferrer"
-						className="transition-200 block max-w-[200px] truncate text-ellipsis whitespace-nowrap rounded-full p-2 transition-colors hover:bg-white hover:text-black dark:hover:bg-neutral-800 dark:hover:text-white"
+						className="block rounded-lg px-4 py-2 text-white transition-all duration-200 hover:bg-white hover:text-black dark:hover:bg-neutral-800 dark:hover:text-white"
 					>
 						{item.label}
 					</a>
@@ -45,7 +47,7 @@ export const Header = () => {
 				<li>
 					<DropdownMenu.Root>
 						<DropdownMenu.Trigger asChild>
-							<button className="transition-200 block rounded-full p-2 transition-colors hover:bg-white hover:text-black dark:hover:bg-neutral-800 dark:hover:text-white">
+							<button className="rounded-lg px-4 py-2 transition-all duration-200 hover:bg-white hover:text-black dark:hover:bg-neutral-800 dark:hover:text-white">
 								More
 							</button>
 						</DropdownMenu.Trigger>
@@ -62,7 +64,7 @@ export const Header = () => {
 											href={item.url}
 											target="_blank"
 											rel="noopener noreferrer"
-											className="transition-200 block truncate p-2 transition-colors hover:bg-slate-100 hover:text-black dark:hover:bg-neutral-800 dark:hover:text-white"
+											className="block px-4 py-2 text-black transition-all duration-200 hover:bg-slate-100 dark:hover:bg-neutral-800 dark:hover:text-white"
 										>
 											{item.label}
 										</a>
@@ -77,34 +79,40 @@ export const Header = () => {
 	);
 
 	return (
-		<header className="border-b bg-slate-950 py-10 dark:border-neutral-800 dark:bg-neutral-900">
-			<Container className="grid grid-cols-4 gap-5 px-5">
-				<div className="col-span-2 flex flex-1 flex-row items-center gap-2 lg:col-span-1">
-					<div className="lg:hidden">
+		<header className="sticky left-0 top-0 z-50 border-b border-black/10 bg-black/50 py-6 backdrop-blur-md">
+			<Container className="grid grid-cols-4 items-center gap-5 px-5">
+				{/* Left Section: Logo and Sidebar */}
+				<div className="items-between col-span-4 flex flex-row justify-between gap-2 lg:col-span-1">
+					{/* Hamburger for mobile */}
+					<div className="flex items-center lg:hidden">
 						<Button
 							type="outline"
 							label=""
 							icon={<HamburgerSVG className="h-5 w-5 stroke-current" />}
-							className="rounded-xl border-transparent !px-3 !py-2 text-white hover:bg-slate-900 dark:hover:bg-neutral-800"
+							className="rounded-xl border-transparent !px-3 !py-2 text-white hover:bg-white/10"
 							onClick={toggleSidebar}
 						/>
-
 						{isSidebarVisible && (
 							<PublicationSidebar navbarItems={navbarItems} toggleSidebar={toggleSidebar} />
 						)}
 					</div>
-					<div className="hidden lg:block">
+					{/* Logo for larger screens */}
+					<div className="hidden items-center lg:flex">
+						<PublicationLogo />
+					</div>
+					{/* Mobile Logo */}
+					<div className="mt-5 flex justify-center lg:hidden">
 						<PublicationLogo />
 					</div>
 				</div>
-				<div className="col-span-2 flex flex-row items-center justify-end gap-5 text-slate-300 lg:col-span-3">
-					<nav className="hidden lg:block">{navList}</nav>
-					<Button href={baseUrl} as="a" type="primary" label="Book a demo" />
+			</Container>
+
+			<Container>
+				<div className="hidden grid-cols-1 items-center gap-5 pt-5 text-sm md:grid md:grid-cols-2">
+					<Search />
+					<SocialLinks />
 				</div>
 			</Container>
-			<div className="mt-5 flex justify-center lg:hidden">
-				<PublicationLogo />
-			</div>
 		</header>
 	);
 };

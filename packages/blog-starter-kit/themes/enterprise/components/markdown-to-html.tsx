@@ -8,6 +8,7 @@ type Props = {
 
 const _MarkdownToHtml = ({ contentMarkdown }: Props) => {
 	const content = markdownToHtml(contentMarkdown);
+	// eslint-disable-next-line react-hooks/rules-of-hooks
 	useEmbeds({ enabled: true });
 
 	return (
